@@ -11,7 +11,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-path = '/home/nathane1/Thesis/output'
+path = '/output'
 if not os.getcwd().endswith('output'):
     os.chdir(path)
 
@@ -49,7 +49,7 @@ ens_kde.set_ylabel('')
 ens_kde.set_yticks([])
 ens_kde.set_yticklabels([])
 
-img_dir = '/home/nathane1/Thesis/images'
+img_dir = '/images'
 os.chdir(img_dir)
 kde_fig = ens_kde.get_figure()
 #kde_fig.savefig('ens_kde.jpg', bbox_inches = 'tight')
