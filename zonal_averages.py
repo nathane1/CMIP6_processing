@@ -17,11 +17,10 @@ from lib import zonal_avg_ens_calculator
 
 # Set base directory, open data file
 
-data_dir = '/chinook2/nathane1/Thesis/'
-home_dir = '/home/nathane1/Thesis/'
+data_dir = '' #Fill these in with your local file paths
+home_dir = ''
 os.chdir(data_dir)
 obs_ssts = xr.open_dataset('sst.mnmean.nc')
-
 
 model_list = ["ACCESS-CM2", "ACCESS-ESM1-5", "AWI-CM-1-1-MR", "BCC-CSM2-MR", "CAMS-CSM1-0", "CanESM5", "CESM2", "CESM2-WACCM", "CMCC-CM2-SR5", 
               "CNRM-CM6-1", "CNRM-CM6-1-HR", "CNRM-ESM2-1", "EC-Earth3", "EC-Earth3-Veg", "FGOALS-f3-L", "FGOALS-g3", "GFDL-CM4", "GFDL-ESM4", 
