@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 
-path = '/home/nathane1/Thesis/output'
+path = '/output'
 if not os.getcwd().endswith('output'):
     os.chdir(path)
 
@@ -46,7 +46,7 @@ la_nina_box.set(xlabel = 'Models', ylabel = 'ELI (°E)')
 ersst_box = la_nina_box.patches[len(eli_nina_sortmodels.T)-1]
 ersst_box.set_facecolor('silver')
 
-fig_dir = '/home/nathane1/Thesis/paper_images'
+fig_dir = '/paper_images'
 os.chdir(fig_dir)
 
 la_nina_fig = la_nina_box.get_figure()
@@ -65,8 +65,6 @@ el_nino_box.set(xlabel = 'Models', ylabel = 'ELI (°E)')
 ersst_box = el_nino_box.patches[len(eli_nino_sortmodels.T)-1]
 ersst_box.set_facecolor('silver')
 
-os.chdir(fig_dir)
-
 el_nino_fig = el_nino_box.get_figure()
 #el_nino_fig.savefig('el_nino_boxplot.jpg', bbox_inches = 'tight')
 
@@ -81,16 +79,14 @@ neutral_box.set(xlabel = 'Models', ylabel = 'ELI (°E)')
 ersst_box = neutral_box.patches[len(eli_neutral_sortmodels.T)-1]
 ersst_box.set_facecolor('silver')
 
-os.chdir(fig_dir)
-
 neutral_fig = neutral_box.get_figure()
 #neutral_fig.savefig('neutral_boxplot.jpg', bbox_inches = 'tight')
 
 # Read in, sort data for Niño 3.4
 
-os.chdir('/home/nathane1/Thesis')
-niño_table = pd.read_csv('output/monthly_niño_averaged.csv', index_col = 'Unnamed: 0')
-ERSST_niño = pd.read_csv('output/monthly_ERSST_niño.csv', index_col = 'Unnamed: 0')
+os.chdir(path)
+niño_table = pd.read_csv('monthly_niño_averaged.csv', index_col = 'Unnamed: 0')
+ERSST_niño = pd.read_csv('monthly_ERSST_niño.csv', index_col = 'Unnamed: 0')
 niño_table = niño_table[4:171].join(ERSST_niño)
 
 el_nino_models = niño_table.T.loc[[model for model in (eli_nino_sortmodels.columns & niño_table.columns)]]
