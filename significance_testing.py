@@ -3,17 +3,22 @@
 # Date: 10/26/2021
 # Coded with Python 3.8.10
 
-# Directory management
+# Import relevant modules
 
 import os
-path = '/home/nathane1/Thesis/output'
+import pandas as pd
+import seaborn as sns   
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy import stats
+
+# Directory management
+
+path = '/output'
 if not os.getcwd().endswith('output'):
     os.chdir(path)
 
 # Read in data for significance testing
-
-import pandas as pd
-from scipy import stats
 
 data = pd.read_csv('djf_data.csv', index_col = 'Unnamed: 0')
 #data = pd.read_csv('monthly_niño.csv', index_col = 'Unnamed: 0')
@@ -52,10 +57,6 @@ warming = dict((model,color) for model,color in sig_hue.items() if  color == 'r'
 cooling = dict((model,color) for model,color in sig_hue.items() if  color == 'b')
 
 # Plot significance values
-
-import seaborn as sns   
-import matplotlib.pyplot as plt
-import numpy as np
         
 sig_plot = sns.catplot(data = significant_future.T, kind = 'strip', palette = sig_hue, aspect = 2.0) 
 sig_plot.refline(y=0.05, color = 'k', linestyle = '-', zorder = 100)
