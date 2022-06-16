@@ -15,13 +15,13 @@ mask = sys.argv[3]
 
 import os
 
-dir = '/chinook2/nathane1/Thesis/CMIP6/'
+dir = '/CMIP6/'
 path = dir + model
 os.chdir(path)
 
 # Manipulate file paths to maximize future usability
 
-from cmip6_processing import model_formatter
+from lib.cmip6_processing import model_formatter 
 filename = f.split('CMIP6')[1]
 realization_file = filename.split(f'{model}/')[1]
 realization = realization_file.split('.nc')[0]
@@ -42,7 +42,7 @@ import pandas as pd
 import xarray as xr
 import datetime
 import warnings
-from cmip6_processing import calculate_niño
+from lib.cmip6_processing import calculate_niño
 
 warnings.simplefilter("ignore","SerializationWarning:")
 
@@ -77,10 +77,10 @@ print(f"Successfully calculated Niño 3.4 index for {format_realization}!")
 
 # Send output to CSV
 
-niño_output = pd.read_csv('/home/nathane1/Thesis/output/niño_3.4_table.csv')
+niño_output = pd.read_csv('/output/niño_3.4_table.csv')
 niño_series = pd.Series(sst_anomalies, name= format_realization)
 niño_output.insert(0, format_realization, niño_series)
-niño_output.to_csv('/home/nathane1/Thesis/output/niño_3.4_table.csv')
+niño_output.to_csv('/output/niño_3.4_table.csv')
 
 # Send a nice message to the screen
 
