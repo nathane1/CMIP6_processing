@@ -1,4 +1,4 @@
-# Script for processing data from CMIP6 ensemble for senior thesis project
+# Script for processing data from CMIP6 ensemble
 # Author: Nathan Erickson
 # Date: 9/27/2021
 # Coded with Python 3.8.10
@@ -15,7 +15,7 @@ mask = sys.argv[3]
 
 import os
 
-dir = '/chinook2/nathane1/Thesis/CMIP6/'
+dir = '/CMIP6/' # Modified local file path; change for your directories as appropriate
 path = dir + model
 os.chdir(path)
 
@@ -77,10 +77,10 @@ calculate_eli(ts_tropics,ts_pac)
 
 # Send output to CSV
 
-eli_output = pd.read_csv('/home/nathane1/Thesis/eli_table.csv')
+eli_output = pd.read_csv('eli_table.csv')
 ELI_series = pd.Series(monthly_ELI, name=realization)
 eli_output.insert(0,realization,ELI_series)
-eli_output.to_csv('/home/nathane1/Thesis/eli_table.csv')
+eli_output.to_csv('eli_table.csv')
 
 # Send a nice message to the screen
 
