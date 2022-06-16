@@ -9,7 +9,7 @@ import os
 import pandas as pd
 import seaborn as sns
 
-path = '/home/nathane1/Thesis/output'
+path = '/output'
 if not os.getcwd().endswith('output'):
     os.chdir(path)
 print(os.getcwd())
@@ -18,7 +18,7 @@ print(os.getcwd())
 
 data = pd.read_csv('djf_data.csv', index_col = 'Unnamed: 0')
 
-# Plot heatmap of ELI data (this is the final product)
+# Plot heatmap of ELI data
 
 djf_heatmap = sns.heatmap(data.T.rolling(7).mean().T, cmap = 'RdBu_r', vmax = 180,
                          xticklabels = 40, cbar_kws = {'label':'ELI (°E)'})
@@ -29,7 +29,7 @@ djf_heatmap.set_xticklabels(djf_heatmap.get_xticklabels(), rotation = 75)
 djf_heatmap.set_xlabel('Time', size = 12)
 
 heat_fig = djf_heatmap.get_figure()
-img_dir = '/home/nathane1/Thesis/images'
+img_dir = '/images'
 os.chdir(img_dir)
 #heat_fig.savefig('full_ens_heatmap.jpg', bbox_inches = 'tight')
 
