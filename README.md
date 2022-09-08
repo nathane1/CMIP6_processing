@@ -19,4 +19,8 @@ June 2022 - Version 1.0 of CMIP6 processing
    - Packages:
      - __init__.py - Initializes cmip6_processing.py
      - cmip6_processing.py - Contains functions for processing CMIP6 data; see file for more in-depth descriptions of each
+     
+     - Upcoming Improvements/Fixes:
+      - Improving code tidiness
+      - Bugs relating to warnings package
    
