@@ -1,1 +1,5 @@
+Planned Fixes:
+
 - Trying to filter warnings with the warnings module can cause TypeError: is_subclass arg 2 must be a class, a tuple of classes, or a union. To get around this, remove lines filtering warnings.
+- Automatic check for obs vs. model to get around 5/-5 bug
+- Cleaning up ELI.py - Lat/lon lines unnecessary
