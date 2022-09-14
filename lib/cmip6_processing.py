@@ -17,14 +17,14 @@ def calculate_eli(ssts):
     ts_tropics = ssts.sel(lat=slice(-5,5))
     
     # Calculate ELI over the time range of the input dataset
-    for t in range(0,len(sst_pac)):
-        threshold_temp = np.nanmean(tropic_avg[t])
+    for t in range(0,len(ts_pac)):
+        threshold_temp = np.nanmean(ts_tropics[t])
         monthly_averages.append(threshold_temp)# Find average SST of all points
         ELI_points = ts_pac[t]['lon'].where(ts_pac[t]>threshold_temp)
         ELI = np.nanmean(ELI_points)
         monthly_ELI.append(ELI)
         
-        return monthly_ELI
+    return monthly_ELI
     
 def calculate_niño(ssts): 
     # Calculates the Niño 3.4 index over DJF for given input datasets
