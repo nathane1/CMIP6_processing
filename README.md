@@ -20,7 +20,10 @@ June 2022 - Version 1.0 of CMIP6 processing
      - __init__.py - Initializes cmip6_processing.py
      - cmip6_processing.py - Contains functions for processing CMIP6 data; see file for more in-depth descriptions of each
      
+September 2022 - Version 1.1 of CMIP6 processing
+ - Various bug/syntax fixes associated with code for ELI calculation
+ 
      - Upcoming Improvements/Fixes:
       - Improving code tidiness
-      - Bugs relating to warnings package
+      - Fixing generalization issues
    
