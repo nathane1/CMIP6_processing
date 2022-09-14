@@ -41,12 +41,11 @@ import xarray as xr
 import warnings
 from lib import calculate_eli
 
-warnings.simplefilter("ignore","SerializationWarning:")
-
 # Read in files from working directory
 # Read in model data
 
 data = xr.open_dataset(f'{dir}{filename}')
+warnings.simplefilter("ignore","SerializationWarning:")
 
 # Read in land mask
 
@@ -57,15 +56,9 @@ except FileNotFoundError:
     print(f"Land mask doesn't exist for {model}; no appropriate reprojection can be done")
     print("------------------------------------------")
 
-# Set data arrays
+# Set data array
 
 ts = data['ts']
-if model != "MCM-UA-1-0":
-    lon = data['lon']
-    lat = data['lat']
-else:
-    lon = data['longitude']
-    lat = data['latitude']
 
 # Apply land mask
 
@@ -73,14 +66,19 @@ land_masked = ts.where(land_mask['sftlf'] != 100)
 
 # Calculate ELI
 
-calculate_eli(ts_tropics,ts_pac)
+calculate_eli(land_masked)
 
 # Send output to CSV
 
-eli_output = pd.read_csv('eli_table.csv')
-ELI_series = pd.Series(monthly_ELI, name=realization)
-eli_output.insert(0,realization,ELI_series)
-eli_output.to_csv('eli_table.csv')
+out_file = '/home/nathane1/ENSO-CMIP6/test_table.csv'
+if os.path.isfile(out_file):
+    ELI_series = pd.Series(monthly_ELI, name=realization)
+    eli_output = pd.read_csv(out_file)
+    eli_output.insert(0,realization,ELI_series)
+    eli_output.to_csv(out_file)
+else:
+    ELI_series = pd.Series(monthly_ELI, name=realization)
+    ELI_series.to_csv(out_file)
 
 # Send a nice message to the screen
 
