@@ -70,7 +70,7 @@ calculate_eli(land_masked)
 
 # Send output to CSV
 
-out_file = '/home/nathane1/ENSO-CMIP6/test_table.csv'
+out_file = 'test_table.csv'
 if os.path.isfile(out_file):
     ELI_series = pd.Series(monthly_ELI, name=realization)
     eli_output = pd.read_csv(out_file)
